@@ -1,0 +1,40 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: CATALOG-SERVICE
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/api/products/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: CATALOG-SERVICE
+                fallbackuri: forward:/catalogServiceFallBack
+        - id: CHECKOUT-SERVICE
+          uri: lb://CHECKOUT-SERVICE
+          predicates:
+            - Path=/api/checkout/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: CHECKOUT-SERVICE
+                fallbackuri: forward:/checkoutServiceFallBack
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

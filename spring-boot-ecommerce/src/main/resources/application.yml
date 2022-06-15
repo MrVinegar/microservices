@@ -1,0 +1,18 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: CHECKOUT-SERVICE
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"

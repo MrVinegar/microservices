@@ -1,0 +1,14 @@
+package com.shiyang.cloudgateway;
+
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class CloudGatewayApplicationTests {
+
+
+	void contextLoads() {
+	}
+
+}
