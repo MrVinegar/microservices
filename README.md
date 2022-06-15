@@ -1,4 +1,4 @@
 # microservices
 my microservices implementation
 
-![Class Diagram](image/microservices.png)
+![Class Diagram](microservices.png)
